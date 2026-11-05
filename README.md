@@ -1,3 +1,7 @@
+> **Haiku port.** Branch `570.133.07-haiku` is NVIDIA's 570.133.07 release with the small platform changes that let [nvidia-haiku](https://github.com/Techniix/nvidia-haiku) build it for Haiku: an `NV_HAIKU` platform define and guards, `-fpic` and Makefile flags for Haiku, and two log-format fixes. It is X547's `570.86.16-haiku` delta replayed onto this release (the first to list the GeForce RTX 5070). The build stamps in `nvBldVer.h` are 570.133.07's, because RM and the GSP firmware must agree on them.
+>
+> Build for Haiku from `src/nvidia` and `src/nvidia-modeset` (nvidia-haiku's `Build.sh` does this). The text below is NVIDIA's own README for the Linux modules.
+
 # NVIDIA Linux Open GPU Kernel Module Source
 
 This is the source release of the NVIDIA Linux open GPU kernel modules,
