@@ -88,7 +88,7 @@ CFLAGS += -O2
 ifeq ($(TARGET_ARCH),x86_64)
   CFLAGS += -msoft-float
   CFLAGS += -mno-red-zone
-  CFLAGS += -mcmodel=kernel
+# CFLAGS += -mcmodel=kernel
   CFLAGS += -mno-mmx
   CFLAGS += -mno-sse
   CFLAGS += -mno-sse2
@@ -103,15 +103,15 @@ ifeq ($(TARGET_ARCH),aarch64)
 endif
 
 ifeq ($(TARGET_ARCH),riscv64)
-  CFLAGS += -march=rv64imac_zicsr_zifencei
-  CFLAGS += -mabi=lp64
-  CFLAGS += -mcmodel=medany
+# CFLAGS += -march=rv64gc
+# CFLAGS += -mabi=lp64
+# CFLAGS += -mcmodel=medany
   CFLAGS += -mno-relax
 endif
 
-CFLAGS += -fno-pic
+CFLAGS += -fpic
 CFLAGS += -fno-common
-CFLAGS += -fomit-frame-pointer
+CFLAGS += -fno-omit-frame-pointer
 CFLAGS += -fno-strict-aliasing
 CFLAGS += -ffunction-sections
 CFLAGS += -fdata-sections
@@ -129,7 +129,7 @@ ifeq ($(TARGET_ARCH),x86_64)
 
   #
   # GCC flags -fcf-protection=branch and -mindirect-branch=extern-thunk can
-  # be used together after GCC version 9.4.0. See 
+  # be used together after GCC version 9.4.0. See
   # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=93654 for details.
   # Check if GCC version is appropriate.
   #
@@ -152,8 +152,8 @@ ifeq ($(TARGET_ARCH),x86_64)
     CONDITIONAL_CFLAGS += $(call TEST_CC_ARG, -fcf-protection=branch)
   endif
   CONDITIONAL_CFLAGS += $(call TEST_CC_ARG, -fno-jump-tables)
-  CONDITIONAL_CFLAGS += $(call TEST_CC_ARG, -mindirect-branch=thunk-extern)
-  CONDITIONAL_CFLAGS += $(call TEST_CC_ARG, -mindirect-branch-register)
+# CONDITIONAL_CFLAGS += $(call TEST_CC_ARG, -mindirect-branch=thunk-extern)
+# CONDITIONAL_CFLAGS += $(call TEST_CC_ARG, -mindirect-branch-register)
 endif
 
 CFLAGS += $(CONDITIONAL_CFLAGS)
